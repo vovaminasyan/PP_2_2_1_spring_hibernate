@@ -28,7 +28,8 @@ public class UserDaoImp implements UserDao {
    }
 
    public User getUserFromCar(Car car) {
-    return (User)sessionFactory.getCurrentSession().createQuery("from User as us where us.car=:car").setParameter("car", car).getSingleResult();
+    return (User)sessionFactory.getCurrentSession().createQuery("from User as us where us.car.model=:mod and us.car.series=:ser")
+            .setParameter("mod", car.getModel()).setParameter("ser", car.getSeries()).getSingleResult();
    }
 
  //  public void addCar(Car car) { sessionFactory.getCurrentSession().save(car); }
